@@ -24,7 +24,17 @@ class Queue
     public function dequeue()
     {
         if (!$this->isEmpty()) {
-            return array_shift($this->queue);
+            $index = 0;
+            $minCode = $this->queue[$index]->code;
+            for ($i = 1; $i < count($this->queue); $i++) {
+                if ($this->queue[$i]->code < $minCode) {
+                    $minCode = $this->queue[$i]->code;
+                    $index = $i;
+                }
+            }
+            $item = $this->queue[$index];
+            array_splice($this->queue, $index, 1);
+            return $item;
         } else {
             echo "Còn gì nữa đâu mà khóc với sầu! ";
         }
@@ -35,8 +45,8 @@ class Queue
         return count($this->queue) == 0;
     }
 
-    public function display()
+    public function __toString(): string
     {
-        return $this->queue;
+        print_r($this->queue);
     }
 }

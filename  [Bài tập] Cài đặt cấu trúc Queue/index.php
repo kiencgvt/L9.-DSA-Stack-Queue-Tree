@@ -1,6 +1,6 @@
 <?php
 include_once "Queue.php";
-$queue = new queue(10);
+$queue = new Queue(10);
 $queue->enqueue(1);
 $queue->enqueue(2);
 $queue->enqueue(3);
